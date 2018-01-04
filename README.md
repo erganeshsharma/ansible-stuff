@@ -1,3 +1,3 @@
 ## Ansible Stuff
 
-Testing some ansible best practices.
+Testing some ansible tricks and best practices.
