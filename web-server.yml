@@ -1,26 +1,15 @@
 ---
-- name: Install nginx
-  hosts: host.name.ip
-  become: true
-
+- hosts:
+    - localhost
   tasks:
-  - name: Add epel-release repo
-    yum:
-      name: epel-release
-      state: present
+    - name: Installs nginx web server
+      apt: pkg=nginx state=installed 
+      notify:
+        - start nginx
 
-  - name: Install nginx
-    yum:
-      name: nginx
-      state: present
+    - name: Upload default index.html for host
+      copy: src=static-files/index.html dest=/usr/share/nginx/html/ mode=0644
 
-  - name: Insert Index Page
-    template:
-      src: index.html
-      dest: /usr/share/nginx/html/index.html
-
-  - name: Start NGiNX
-    service:
-      name: nginx
-      state: started
-
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
