@@ -1,0 +1,6 @@
+---
+- hosts:
+    - localhost
+  tasks:
+    - name: Create dev branch
+      shell: git checkout -b dev 
