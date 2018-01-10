@@ -5,8 +5,8 @@
   tasks:
     - name: Install apache2 httpd web server
       apt: pkg=apache2 state=installed
-    - name: Upload default index for host
-      copy: src=files/index.html dest=/var/www/html/index.html mode=0644
+    - name: Copy files to apache web server
+      copy: src=files/demo.html dest=/var/www/html/demo.html mode=0644
       notify:
         - start apache2
 
