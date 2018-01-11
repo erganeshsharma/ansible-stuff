@@ -1,0 +1,19 @@
+---
+- hosts:
+    - localhost
+  tasks:
+    - name: create src directory in SRC SCM Repo
+      shell: mkdir -p SCM-repo/SRC/src
+    - name: create build directory in SRC SCM Repo 
+      shell: mkdir -p SCM-repo/SRC/build
+    - name: create deploy directory in SRC SCM Repo
+      shell: mkdir -p SCM-repo/SRC/deploy
+    - name: create config directory in SRC SCM Repo
+      shell: mkdir -p SCM-repo/SRC/config
+
+    - name: create bin directory in BIN SCM Repo
+      shell: mkdir -p SCM-repo/BIN/bin
+    - name: create deploy directory in BIN SCM Repo
+      shell: mkdir -p SCM-repo/BIN/deploy
+    - name: create config directory in BIN SCM Repo
+      shell: mkdir -p SCM-repo/BIN/config
