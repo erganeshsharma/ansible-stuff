@@ -1,0 +1,18 @@
+---
+- hosts:
+    - localhost
+  tasks:
+    - name: stop the app
+      notify:
+      - stop app1
+
+    - name: execute rollback script in release package
+      shell: /usr/v0.1/deploy.sh
+      ignore_errors: True
+      notify:
+        - restart app1
+    handlers:
+      - name: restart app1
+        service: name=app1 state=restarted
+      - name: stop app1
+        service: name=app1 state=stoped
