@@ -1,0 +1,6 @@
+---
+- hosts:
+    - localhost
+  tasks:
+    - name: remove release package working folders
+      shell: rm -rf /usr/v0.1/
