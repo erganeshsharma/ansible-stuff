@@ -1,0 +1,18 @@
+---
+- hosts:
+    - localhost
+  tasks:
+    - name: create src,build, deploy and config directory in SRC SCM Repo
+      shell: mkdir -p SCM-repo/SRC/{{ item }}
+      with_items:
+      - src
+      - build
+      - deploy
+      - config
+
+    - name: create bin, deploy and config directory in BIN SCM Repo
+      shell: mkdir -p SCM-repo/BIN/{{ item }}
+      with_items:
+      - bin
+      - deploy
+      - config
