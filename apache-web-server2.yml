@@ -1,0 +1,18 @@
+---
+- hosts:
+    - localhost
+
+  tasks:
+    - name: ensure apache2 is at the latest version
+      apt: pkg=httpd state=latest
+     
+    - name: Copy files to apache web server
+      copy: src=files/demo.html dest=/var/www/html/demo.html mode=0644 backup=yes
+      notify:
+        - restart apache2
+    - name: ensure apache is running (and enable it at boot)
+      service: name=httpd state=started enabled=yes
+
+  handlers:
+    - name: restart apache2
+      service: name=httpd state=restarted
