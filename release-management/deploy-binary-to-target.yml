@@ -1,0 +1,26 @@
+---
+- hosts:
+    - localhost
+  tasks:
+    - name: create release folder on target server
+      shell: mkdir /usr/v0.1
+
+    - name: create backup folder on target server
+      shell: mkdir /usr/v0.1/backup
+    
+    - name: download release package from Bin SCM repo to target server
+      copy: src=/BIN-SCM-repo/usr/aap1/v0.1/bin dest=/usr/v0.1 mode=0644
+      notify:
+        - stop app1
+
+    - name: execute deployment script in release package
+      shell: /usr/v0.1/deploy.sh
+      ignore_errors: True
+      notify:
+        - restart app1
+
+    handlers:
+      - name: restart app1
+        service: name=app1 state=restarted
+      - name: stop app1
+        service: name=app1 state=stoped
